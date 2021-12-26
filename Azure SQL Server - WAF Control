@@ -1,0 +1,39 @@
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "Microsoft.Sql/servers/firewallRules/startIpAddress",
+          "notIn": [
+           "x.x.x.x",
+           "y.y.y.y"
+          ]
+        },
+        {
+          "field": "Microsoft.Sql/servers/firewallRules/endIpAddress",
+          "notIn": [
+           "x.x.x.x",
+           "y.y.y.y"
+          ]
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "allowedValues": [
+        "Deny",
+        "Disabled"
+      ],
+      "defaultValue": "Deny"
+    }
+  }
+}
